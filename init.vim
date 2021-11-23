@@ -12,7 +12,7 @@ Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.nvim'
 " Plug 'Shougo/deol.nvim'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'kshenoy/vim-signature'
