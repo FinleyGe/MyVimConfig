@@ -21,7 +21,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips',{'for':'markdown'}
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
-
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 call plug#end()
 " let vim_markdown_preview_hotkey='<C-m>'
 " let vim_markdown_preview_github=1
