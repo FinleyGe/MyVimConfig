@@ -1,6 +1,9 @@
 call plug#begin('~/.vim/plugged')
+" Plug 'vimwiki/vimwiki'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'michal-h21/vim-zettel'
 Plug 'vim-airline/vim-airline'
-" Plug 'Yggdroot/indentLine'
 Plug 'crusoexia/vim-monokai'
 Plug 'scrooloose/nerdcommenter'
 Plug 'luochen1990/rainbow'
@@ -8,25 +11,23 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim'
-" Plug 'Shougo/deol.nvim'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'kshenoy/vim-signature'
-" Plug 'preservim/nerdcommenter'
 Plug 'Raimondi/delimitMate'
-Plug 'SirVer/ultisnips',{'for':'markdown'}
+" Plug 'SirVer/ultisnips',{'for':'markdown'}
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-startify'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+Plug 'jbgutierrez/vim-better-comments'
 call plug#end()
 " let vim_markdown_preview_hotkey='<C-m>'
 " let vim_markdown_preview_github=1
-"
 colo monokai
+autocmd vimenter * hi Normal guibg=NONE ctermbg = NONE " transparent bg
 let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
 " 设置状态栏
@@ -65,16 +66,16 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
 nmap <leader>q :bp<cr>:bd #<cr>
 " 修改了一些个人不喜欢的字符
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.linenr = "CL" " current line
-let g:airline_symbols.whitespace = '|'
-let g:airline_symbols.maxlinenr = 'Ml' "maxline
-let g:airline_symbols.branch = 'BR'
-let g:airline_symbols.readonly = "RO"
-let g:airline_symbols.dirty = "DT"
-let g:airline_symbols.crypt = "CR" 
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+" let g:airline_symbols.linenr = "CL" " current line
+" let g:airline_symbols.whitespace = '|'
+" let g:airline_symbols.maxlinenr = 'Ml' "maxline
+" let g:airline_symbols.branch = 'BR'
+" let g:airline_symbols.readonly = "RO"
+" let g:airline_symbols.dirty = "DT"
+" let g:airline_symbols.crypt = "CR"
 
 "add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
