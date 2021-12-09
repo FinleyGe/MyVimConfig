@@ -23,6 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-startify'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'jbgutierrez/vim-better-comments'
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
 " let vim_markdown_preview_hotkey='<C-m>'
 " let vim_markdown_preview_github=1
