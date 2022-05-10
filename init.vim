@@ -1,8 +1,5 @@
 call plug#begin('~/.vim/plugged')
-" Plug 'vimwiki/vimwiki'
-Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'michal-h21/vim-zettel'
 Plug 'vim-airline/vim-airline'
 Plug 'crusoexia/vim-monokai'
 Plug 'scrooloose/nerdcommenter'
@@ -10,23 +7,19 @@ Plug 'luochen1990/rainbow'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'kshenoy/vim-signature'
 Plug 'Raimondi/delimitMate'
-" Plug 'SirVer/ultisnips',{'for':'markdown'}
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
-Plug 'mhinz/vim-startify'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'jbgutierrez/vim-better-comments'
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'mhinz/vim-startify'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
-" let vim_markdown_preview_hotkey='<C-m>'
-" let vim_markdown_preview_github=1
 colo monokai
 autocmd vimenter * hi Normal guibg=NONE ctermbg = NONE " transparent bg
 let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
@@ -66,19 +59,6 @@ nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
 nmap <leader>q :bp<cr>:bd #<cr>
-" 修改了一些个人不喜欢的字符
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"endif
-" let g:airline_symbols.linenr = "CL" " current line
-" let g:airline_symbols.whitespace = '|'
-" let g:airline_symbols.maxlinenr = 'Ml' "maxline
-" let g:airline_symbols.branch = 'BR'
-" let g:airline_symbols.readonly = "RO"
-" let g:airline_symbols.dirty = "DT"
-" let g:airline_symbols.crypt = "CR"
-
-"add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " python 自动的会多加一个空格
 au FileType python let g:NERDSpaceDelims = 0
@@ -128,11 +108,8 @@ let g:rainbow_conf = {
 \   }
 \}
 
-" autocmd vimenter * NERDTree  "自动开启Nerdtree
 let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
 let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
-"打开vim时如果没有文件自动打开NERDTree
-" autocmd vimenter * if !argc()|NERDTree|endif
 "当NERDTree为剩下的唯一窗口时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " 设置树的显示图标
@@ -141,7 +118,7 @@ let g:NERDTreeDirArrowCollapsible = '-'
 let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
 let g:NERDTreeShowLineNumbers=0 " 是否显示行号
 let g:NERDTreeHidden=0     "不显示隐藏文件
-""Making it prettier
+"Making it prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 nnoremap <F3> :NERDTreeToggle<CR> " 开启/关闭nerdtree快捷键
@@ -151,14 +128,7 @@ nnoremap <silent> <F4> :TagbarToggle<CR> " 将tagbar的开关按键设置为 F4
 
 " if hidden is not set, TextEdit might fail.
 set hidden
-" Some servers have issues with backup files, see #649
-" set nobackup
-" set nowritebackup
- 
-" You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
- 
-" don't give |ins-completion-menu| messages.
 set shortmess+=c
  
 " always show signcolumns
@@ -178,7 +148,7 @@ function! s:check_back_space() abort
 endfunction
  
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-,> coc#refresh()
  
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -247,17 +217,20 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-
-
+nnoremap <A-h> <C-w>h<Esc>
+nnoremap <A-j> <C-w>j<Esc>
+nnoremap <A-k> <C-w>k<Esc>
+nnoremap <A-l> <C-w>l<Esc>
 filetype plugin on
 " 设置为双字宽显示，否则无法完整显示如:☆
 " set ambiwidth=double
+let mapleader=","
+nnoremap <esc> :noh<return><esc>
 set t_ut= " 防止vim背景颜色错误
 set showmatch " 高亮匹配括号
 set matchtime=1
 set report=0
 set ignorecase
-set nocompatible
 set noeb
 set softtabstop=4
 set shiftwidth=4
@@ -280,8 +253,6 @@ set tabstop=4 "设置TAB宽度
 set history=1000 "设置历史记录条数   
 " 配色方案
 " let g:seoul256_background = 234
-colo monokai
-set background=dark
 set shortmess=atl 
 vmap <C-y> "+y
 
@@ -300,7 +271,6 @@ set shortmess+=c
 set signcolumn=yes
  
 " autocmd FileType json syntax match Comment +\/\/.\+$+
- 
 set foldmethod=indent " 设置默认折叠方式为缩进
 set foldlevelstart=99 " 每次打开文件时关闭折叠
  
@@ -317,7 +287,7 @@ map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
-		exec "!g++ % -o %<"
+		exec "!gcc % -o %<"
 		exec "ter time ./%<"
 	elseif &filetype == 'cpp'
 		exec "!g++ % -o %<"
