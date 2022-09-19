@@ -65,8 +65,6 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 let g:tagbar_width=30
-
-
 set hidden
 set updatetime=300
 set shortmess+=c
@@ -97,19 +95,15 @@ set selection=exclusive
 set tabstop=2 "设置TAB宽度
 set history=1000 "设置历史记录条数   
 set shortmess=atl 
-set cmdheight=3
+set cmdheight=2
 if version >= 603
      set helplang=cn
      set encoding=utf-8
 endif
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
-set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
  
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
